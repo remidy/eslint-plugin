@@ -1,5 +1,11 @@
 # @remidy/eslint-plugin
 
+## Installation
+
+```sh
+npm install eslint @remidy/eslint-plugin --save-dev
+```
+
 ## List of supported rules
 
 | Name                                                       | Description                              |
