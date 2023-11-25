@@ -1,9 +1,11 @@
 {
   "name": "@remidy/eslint-plugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "eslint",
-    "eslintplugin"
+    "eslintplugin",
+    "jsx",
+    "tailwindcss"
   ],
   "license": "MIT",
   "author": {
@@ -18,9 +20,9 @@
     "test": "node src/rules/*.test.js"
   },
   "devDependencies": {
-    "eslint": "8.52.0",
+    "eslint": "8.54.0",
     "eslint-plugin-eslint-plugin": "5.1.1",
-    "eslint-plugin-n": "16.2.0"
+    "eslint-plugin-n": "16.3.1"
   },
   "peerDependencies": {
     "eslint": ">=0.8.0"

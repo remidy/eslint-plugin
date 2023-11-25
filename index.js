@@ -4,7 +4,7 @@ const jsxSortClassNames = require("./src/rules/jsx-sort-class-names");
 module.exports = {
   meta: {
     name: "@remidy/eslint-plugin",
-    version: "1.1.0"
+    version: "1.1.1"
   },
   rules: {
     "jsx-no-duplicate-class-names": jsxNoDuplicateClassNames,
