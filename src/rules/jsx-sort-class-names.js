@@ -22,7 +22,7 @@ module.exports = {
     const modifierIndices = new Map(modifiers.map((modifier, index) => [modifier, index]));
 
     function lint(node, value) {
-      const values = value.value.split(" ");
+      const values = value.value.split(" ").filter(Boolean);
       if (values.length > 1) {
         const sortedValue = values.sort(sort).join(" ");
         if (value.value !== sortedValue) {
@@ -95,7 +95,7 @@ module.exports = {
               if (argument.type === "Literal") {
                 lint(node, argument);
               } else if (argument.type === "ObjectExpression") {
-                argument.properties.filter((property) => property.key.value).forEach((property) => {
+                argument.properties.filter((property) => !property.shorthand).forEach((property) => {
                   lint(node, property.key);
                 });
               }
