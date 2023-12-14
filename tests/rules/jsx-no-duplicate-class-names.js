@@ -1,5 +1,5 @@
 const { RuleTester } = require("eslint");
-const jsxNoDuplicateClassNames = require("./jsx-no-duplicate-class-names");
+const jsxNoDuplicateClassNames = require("../../src/rules/jsx-no-duplicate-class-names");
 
 const ruleTester = new RuleTester({ parserOptions: { ecmaFeatures: { jsx: true }, ecmaVersion: 6 } });
 ruleTester.run(
@@ -17,7 +17,7 @@ ruleTester.run(
         errors: [{ messageId: "noDuplicateClassNames" }]
       },
       {
-        code: '<div className={classNames("a b c", a, b && "b c")}>...</div>',
+        code: '<div className={classNames("a b c", a && "a", b && "b c")}>...</div>',
         errors: [{ messageId: "noDuplicateClassNames" }, { messageId: "noDuplicateClassNames" }, { messageId: "noDuplicateClassNames" }]
       },
       {

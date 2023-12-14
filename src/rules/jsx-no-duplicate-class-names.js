@@ -29,9 +29,7 @@ module.exports = {
             lint(node, node.value.value, classNames);
           } else if (node.value.type === "JSXExpressionContainer") {
             node.value.expression.arguments?.forEach((argument) => {
-              if (argument.type === "Identifier") {
-                lint(node, argument.name, classNames);
-              } else if (argument.type === "Literal") {
+              if (argument.type === "Literal") {
                 lint(node, argument.value, classNames);
               } else if (argument.type === "LogicalExpression") {
                 lint(node, argument.right.value, classNames);

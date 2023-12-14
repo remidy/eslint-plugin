@@ -1,6 +1,6 @@
 {
   "name": "@remidy/eslint-plugin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "node src/rules/*.test.js"
+    "test": "node tests"
   },
   "devDependencies": {
     "eslint": "8.54.0",

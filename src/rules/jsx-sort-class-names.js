@@ -94,8 +94,10 @@ module.exports = {
             node.value.expression.arguments?.forEach((argument) => {
               if (argument.type === "Literal") {
                 lint(node, argument);
+              } else if (argument.type === "LogicalExpression") {
+                lint(node, argument.right);
               } else if (argument.type === "ObjectExpression") {
-                argument.properties.filter((property) => !property.shorthand).forEach((property) => {
+                argument.properties.filter((property) => property.key.value).forEach((property) => {
                   lint(node, property.key);
                 });
               }
