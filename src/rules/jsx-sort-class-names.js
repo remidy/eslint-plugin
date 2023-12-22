@@ -53,16 +53,36 @@ module.exports = {
         return 1;
       }
 
-      const firstPartsA = firstPartA.split(":");
-      const firstPartsB = firstPartB.split(":");
+      if (modifiers.length === 0) {
+        return firstPartA < firstPartB ? -1 : 1;
+      }
 
-      for (let index = 0; index < firstPartsA.length; index += 1) {
-        if (!firstPartsB[index]) {
+      const modifiersA = firstPartA.split(":");
+      const modifiersB = firstPartB.split(":");
+
+      for (let index = 0; index < modifiersA.length; index += 1) {
+        const modifierA = modifiersA[index];
+        const modifierB = modifiersB[index];
+
+        if (!modifierB) {
           return 1;
         }
 
-        if (firstPartsA[index] !== firstPartsB[index]) {
-          return modifierIndices.get(firstPartsA[index]) < modifierIndices.get(firstPartsB[index]) ? -1 : 1;
+        if (modifierA !== modifierB) {
+          const indexA = modifierIndices.get(modifierA);
+          const indexB = modifierIndices.get(modifierB);
+
+          if (typeof indexA === "number" && typeof indexB === "number") {
+            return indexA < indexB ? -1 : 1;
+          }
+
+          if (typeof indexA === "number") {
+            return -1;
+          }
+
+          if (typeof indexB === "number") {
+            return 1;
+          }
         }
       }
 

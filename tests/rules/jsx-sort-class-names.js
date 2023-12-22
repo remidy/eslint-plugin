@@ -39,6 +39,11 @@ ruleTester.run(
       },
       {
         code: '<div className="a-1 x:a-2 y:a-3 z:a-4 b-1 x:b-2 y:b-3 c-1 x:c-2">...</div>',
+        output: '<div className="a-1 b-1 c-1 x:a-2 x:b-2 x:c-2 y:a-3 y:b-3 z:a-4">...</div>',
+        errors: [{ messageId: "sortClassNamesAlphabetically" }]
+      },
+      {
+        code: '<div className="a-1 x:a-2 y:a-3 z:a-4 b-1 x:b-2 y:b-3 c-1 x:c-2">...</div>',
         options: [{ modifiers: ["x", "y", "z"] }],
         output: '<div className="a-1 b-1 c-1 x:a-2 x:b-2 x:c-2 y:a-3 y:b-3 z:a-4">...</div>',
         errors: [{ messageId: "sortClassNamesAlphabetically" }]
