@@ -22,17 +22,19 @@ module.exports = {
     const modifierIndices = new Map(modifiers.map((modifier, index) => [modifier, index]));
 
     function lint(node, value) {
-      const values = value.value.split(" ").filter(Boolean);
-      if (values.length > 1) {
-        const sortedValue = values.sort(sort).join(" ");
-        if (value.value !== sortedValue) {
-          context.report({
-            node,
-            messageId: "sortClassNamesAlphabetically",
-            fix(fixer) {
-              return fixer.replaceTextRange([value.range[0] + 1, value.range[1] - 1], sortedValue);
-            }
-          });
+      if (typeof value.value === "string") {
+        const values = value.value.split(" ").filter(Boolean);
+        if (values.length > 1) {
+          const sortedValue = values.sort(sort).join(" ");
+          if (value.value !== sortedValue) {
+            context.report({
+              node,
+              messageId: "sortClassNamesAlphabetically",
+              fix(fixer) {
+                return fixer.replaceTextRange([value.range[0] + 1, value.range[1] - 1], sortedValue);
+              }
+            });
+          }
         }
       }
     }

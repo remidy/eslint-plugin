@@ -8,16 +8,18 @@ module.exports = {
   },
   create(context) {
     function lint(node, value, classNames) {
-      value.split(" ").filter(Boolean).forEach((className) => {
-        if (classNames.has(className)) {
-          context.report({
-            node,
-            messageId: "noDuplicateClassNames"
-          });
-        } else {
-          classNames.add(className);
-        }
-      });
+      if (typeof value === "string") {
+        value.split(" ").filter(Boolean).forEach((className) => {
+          if (classNames.has(className)) {
+            context.report({
+              node,
+              messageId: "noDuplicateClassNames"
+            });
+          } else {
+            classNames.add(className);
+          }
+        });
+      }
     }
 
     return {
