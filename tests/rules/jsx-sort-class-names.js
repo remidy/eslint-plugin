@@ -11,10 +11,13 @@ ruleTester.run(
         code: '<div className="a b c">...</div>'
       },
       {
+        code: '<div className={classNames("d e f", { "b c": b, a })}>...</div>'
+      },
+      {
         code: '<div className={classNames("d e f", b && "b c", a && "a")}>...</div>'
       },
       {
-        code: '<div className={classNames("d e f", { "b c": b, a })}>...</div>'
+        code: '<div className={classNames("g h i", f ? "f" : "d e", b ? "b c" : "a")}>...</div>',
       },
       {
         code: '<div className="a-1 b-1 c-1 x:a-2 x:b-2 x:c-2 y:a-3 y:b-3 z:a-4">...</div>',
@@ -28,14 +31,19 @@ ruleTester.run(
         errors: [{ messageId: "sortClassNamesAlphabetically" }]
       },
       {
+        code: '<div className={classNames("c b a", { d, "f e": e })}>...</div>',
+        output: '<div className={classNames("a b c", { d, "e f": e })}>...</div>',
+        errors: [{ messageId: "sortClassNamesAlphabetically" }, { messageId: "sortClassNamesAlphabetically" }]
+      },
+      {
         code: '<div className={classNames("c b a", d && "d", e && "f e")}>...</div>',
         output: '<div className={classNames("a b c", d && "d", e && "e f")}>...</div>',
         errors: [{ messageId: "sortClassNamesAlphabetically" }, { messageId: "sortClassNamesAlphabetically" }]
       },
       {
-        code: '<div className={classNames("c b a", { d, "f e": e })}>...</div>',
-        output: '<div className={classNames("a b c", { d, "e f": e })}>...</div>',
-        errors: [{ messageId: "sortClassNamesAlphabetically" }, { messageId: "sortClassNamesAlphabetically" }]
+        code: '<div className={classNames("c b a", d ? "d" : "f e", g ? "h g" : "i")}>...</div>',
+        output: '<div className={classNames("a b c", d ? "d" : "e f", g ? "g h" : "i")}>...</div>',
+        errors: [{ messageId: "sortClassNamesAlphabetically" }, { messageId: "sortClassNamesAlphabetically" }, { messageId: "sortClassNamesAlphabetically" }]
       },
       {
         code: '<div className="a-1 x:a-2 y:a-3 z:a-4 b-1 x:b-2 y:b-3 c-1 x:c-2">...</div>',
