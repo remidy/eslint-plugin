@@ -40,8 +40,8 @@ module.exports = {
     }
 
     function sort(a, b) {
-      let [firstPartA, lastPartA] = getParts(a);
-      let [firstPartB, lastPartB] = getParts(b);
+      let [firstPartA, lastPartA] = getParts(a.replaceAll("[", "").replaceAll("]", ""));
+      let [firstPartB, lastPartB] = getParts(b.replaceAll("[", "").replaceAll("]", ""));
 
       if ((firstPartA === lastPartA && firstPartB === lastPartB) || firstPartA === firstPartB) {
         return lastPartA < lastPartB ? -1 : 1;
